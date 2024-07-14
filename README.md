@@ -195,6 +195,8 @@ public class AreaCalculator {
     }
 }
 ```
+![ocp1](https://github.com/user-attachments/assets/06dbe1cd-e5a1-4894-bbd9-0fce5841ac1c)
+
 In the above example, if we want to calculate the area of a circle, we would need to modify the `AreaCalculator` class, which violates the Open/Closed Principle.
 
 #### Example 2: After Applying OCP
@@ -263,6 +265,8 @@ public class AreaCalculator {
     }
 }` 
 ```
+![ocp2](https://github.com/user-attachments/assets/e13c12b8-9000-4f32-afbb-17c2219552ee)
+
 
 In the refactored example, the `Shape` interface defines a `calculateArea` method. Both `Rectangle` and `Circle` implement this interface. The `AreaCalculator` class now depends on the `Shape` interface, allowing it to calculate the area of any shape without modification. This adheres to the Open/Closed Principle by allowing the system to be extended with new shapes without altering existing code.
 
