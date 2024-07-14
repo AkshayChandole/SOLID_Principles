@@ -328,6 +328,7 @@ public class BirdWatcher {
     }
 }
 ```
+![lsp1](https://github.com/user-attachments/assets/2a47325d-e56e-4972-b4a5-4e61f2be411b)
 
 In the above example, the `Ostrich` class violates the Liskov Substitution Principle because it cannot fly, and calling `fly()` results in an exception. The `BirdWatcher` class expects all `Bird` instances to be able to fly.
 
@@ -380,6 +381,7 @@ public class BirdWatcher {
     }
 }` 
 ```
+![lsp2](https://github.com/user-attachments/assets/1989b507-7cd5-4259-9ef6-3ce6eda531d4)
 
 In the refactored example, the `Bird` class has an abstract `move` method that is implemented by `Sparrow` and `Ostrich` according to their capabilities. Now, the `BirdWatcher` class can use any `Bird` subclass without worrying about whether it can fly or not.
 
