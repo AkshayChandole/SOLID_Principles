@@ -152,15 +152,128 @@ In the refactored example, we have separated the responsibilities into three dif
 
 ### Definition
 
-[Content for Definition]
+The Open/Closed Principle states that ***"software entities (classes, modules, functions, etc.) should be open for extension but closed for modification."*** This means that the behavior of a module can be extended without modifying its source code.
 
 ### Explanation
 
-[Content for Explanation]
+The Open/Closed Principle is one of the five SOLID principles of object-oriented design. It helps in creating systems that are easy to extend and maintain. The main idea is that you should be able to add new functionality to existing code without changing the existing code.
+
+By adhering to OCP, you reduce the risk of introducing bugs into existing, tested code when new functionality is added. This principle is typically achieved through polymorphism and abstraction.
 
 ### Examples
 
-[Content for Examples]
+#### Example 1: Before Applying OCP
+
+```java
+// Rectangle.java
+
+public class Rectangle {
+    private int width;
+    private int height;
+
+    public Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+}
+```
+
+```java
+// AreaCalculator.java
+
+public class AreaCalculator {
+    public int calculateRectangleArea(Rectangle rectangle) {
+        return rectangle.getWidth() * rectangle.getHeight();
+    }
+}
+```
+In the above example, if we want to calculate the area of a circle, we would need to modify the `AreaCalculator` class, which violates the Open/Closed Principle.
+
+#### Example 2: After Applying OCP
+```java
+// Shape.java
+
+public interface Shape {
+    int calculateArea();
+}
+```
+
+```java
+// Rectangle.java
+
+public class Rectangle implements Shape {
+    private int width;
+    private int height;
+
+    public Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
+    public int calculateArea() {
+        return width * height;
+    }
+}
+```
+
+```java
+// Circle.java
+
+public class Circle implements Shape {
+    private int radius;
+
+    public Circle(int radius) {
+        this.radius = radius;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    @Override
+    public int calculateArea() {
+        return (int) (Math.PI * radius * radius);
+    }
+}
+```
+
+```java
+// AreaCalculator.java
+
+public class AreaCalculator {
+    public int calculateArea(Shape shape) {
+        return shape.calculateArea();
+    }
+}` 
+```
+
+In the refactored example, the `Shape` interface defines a `calculateArea` method. Both `Rectangle` and `Circle` implement this interface. The `AreaCalculator` class now depends on the `Shape` interface, allowing it to calculate the area of any shape without modification. This adheres to the Open/Closed Principle by allowing the system to be extended with new shapes without altering existing code.
+
+### Benefits of OCP
+
+-   **Enhanced Maintainability:** Changes are easier to implement without affecting existing functionality.
+-   **Reduced Risk of Bugs:** Adding new functionality does not interfere with existing, tested code.
+-   **Improved Extensibility:** New features can be added with minimal effort.
+
+<br>
+
 
 ## Liskov Substitution Principle (LSP)
 
