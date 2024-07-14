@@ -97,7 +97,8 @@ public class Employee {
     }
 }
 ```
-<img src="https://github.com/user-attachments/assets/d9bd44ff-1f0f-4df3-876d-862e38e9c5d6" alt="Employee Class Diagram without SRP" width="auto" height="250>
+
+![image](https://github.com/user-attachments/assets/2d3b6129-58d0-4ac4-8eb1-35933312b0cc)
 
 
 In the example above, the `Employee` class has multiple responsibilities: managing employee details, saving to the database, and sending emails. This violates the SRP because changes to email functionality or database storage would require modifications to the `Employee` class.
