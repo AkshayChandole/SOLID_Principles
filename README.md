@@ -283,15 +283,115 @@ In the refactored example, the `Shape` interface defines a `calculateArea` metho
 
 ### Definition
 
-[Content for Definition]
+The *Liskov Substitution Principle* states that ***"objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program."*** In other words, if `S` is a subtype of `T`, then objects of type `T` may be replaced with objects of type `S` without altering any of the desirable properties of the program (e.g., correctness).
 
 ### Explanation
 
-[Content for Explanation]
+The Liskov Substitution Principle, introduced by Barbara Liskov in 1987, is one of the five SOLID principles of object-oriented design. It ensures that a subclass can stand in for its superclass without causing errors or unexpected behavior. This principle promotes the use of polymorphism and inheritance correctly.
+
+For a subclass to be a true substitute for its superclass:
+- It should not remove base class behavior expected by the client code.
+- It should not violate the invariants of the base class.
+- It should follow the contract established by the base class.
 
 ### Examples
 
-[Content for Examples]
+#### Example 1: Before Applying LSP
+
+```java
+// Bird.java
+
+public class Bird {
+    public void fly() {
+        System.out.println("Flying");
+    }
+}
+```
+
+```java
+// Ostrich.java
+
+public class Ostrich extends Bird {
+    @Override
+    public void fly() {
+        throw new UnsupportedOperationException("Ostriches cannot fly");
+    }
+}
+```
+
+```java
+// BirdWatcher.java
+
+public class BirdWatcher {
+    public void watch(Bird bird) {
+        bird.fly();
+    }
+}
+```
+
+In the above example, the `Ostrich` class violates the Liskov Substitution Principle because it cannot fly, and calling `fly()` results in an exception. The `BirdWatcher` class expects all `Bird` instances to be able to fly.
+
+#### Example 2: After Applying LSP
+
+```java
+// Bird.java
+
+public abstract class Bird {
+    public abstract void move();
+}
+```
+
+```java
+// Sparrow.java
+
+public class Sparrow extends Bird {
+    @Override
+    public void move() {
+        fly();
+    }
+
+    private void fly() {
+        System.out.println("Flying");
+    }
+}
+```
+
+```java
+// Ostrich.java
+
+public class Ostrich extends Bird {
+    @Override
+    public void move() {
+        walk();
+    }
+
+    private void walk() {
+        System.out.println("Walking");
+    }
+}
+```
+
+```java
+// BirdWatcher.java
+
+public class BirdWatcher {
+    public void watch(Bird bird) {
+        bird.move();
+    }
+}` 
+```
+
+In the refactored example, the `Bird` class has an abstract `move` method that is implemented by `Sparrow` and `Ostrich` according to their capabilities. Now, the `BirdWatcher` class can use any `Bird` subclass without worrying about whether it can fly or not.
+
+### Benefits of LSP
+
+-   **Improved Code Reusability:** Classes can be used interchangeably without unexpected behavior.
+-   **Enhanced Maintainability:** New subclasses can be added without modifying existing code.
+-   **Increased Reliability:** Reduces the risk of runtime errors due to improper subclassing.
+
+<br>
+
+
 
 ## Interface Segregation Principle (ISP)
 
