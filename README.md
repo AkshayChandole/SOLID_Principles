@@ -134,12 +134,19 @@ In the example above, the `Employee` class has multiple responsibilities: managi
         }
     }
 ```
-![image](https://github.com/user-attachments/assets/a4f4cca7-e666-4c9c-8669-2a61d5261d90)
 
+![srp2](https://github.com/user-attachments/assets/ffbaf28c-164e-4f00-8e05-6350924e25c1)
 
 In the refactored example, we have separated the responsibilities into three different classes: `Employee`, `EmployeeRepository`, and `EmailService`. The `Employee` class is now solely responsible for managing employee details, the `EmployeeRepository` is responsible for saving employee details to the database, and the `EmailService` is responsible for sending emails. This adheres to the Single Responsibility Principle and makes the code more modular and easier to maintain.
 
+### Benefits of SRP
 
+-   **Improved Readability:** Code is easier to understand when each class has a single responsibility.
+-   **Enhanced Maintainability:** Changes in one responsibility do not affect other parts of the code, making maintenance easier.
+-   **Better Testability:** Smaller, focused classes are easier to test.
+-   **Reduced Risk of Bugs:** Isolating responsibilities reduces the likelihood of introducing bugs when making changes.
+
+<br>
 
 ## Open/Closed Principle (OCP)
 
