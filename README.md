@@ -134,7 +134,8 @@ In the example above, the `Employee` class has multiple responsibilities: managi
         }
     }
 ```
-<img src="https://github.com/user-attachments/assets/3c8b4fa1-1f54-4d62-9443-43479fc5b6bd" alt="Employee Class Diagram with SRP" width="auto" height="250>
+![image](https://github.com/user-attachments/assets/a4f4cca7-e666-4c9c-8669-2a61d5261d90)
+
 
 In the refactored example, we have separated the responsibilities into three different classes: `Employee`, `EmployeeRepository`, and `EmailService`. The `Employee` class is now solely responsible for managing employee details, the `EmployeeRepository` is responsible for saving employee details to the database, and the `EmailService` is responsible for sending emails. This adheres to the Single Responsibility Principle and makes the code more modular and easier to maintain.
 
