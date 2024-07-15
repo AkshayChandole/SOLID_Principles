@@ -558,6 +558,7 @@ public class Switch {
     }
 }
 ```
+![dip1](https://github.com/user-attachments/assets/0b2cfc0d-a4a4-4895-a4d6-850781329778)
 
 In the above example, the `Switch` class directly depends on the `LightBulb` class, which violates the Dependency Inversion Principle. If you need to switch to a different type of light source, you must modify the `Switch` class.
 
@@ -619,6 +620,7 @@ public class Switch {
     }
 }
 ```
+![dip2](https://github.com/user-attachments/assets/26564546-f16e-4621-a602-09b962eb3155)
 
 In the refactored example, the `Switch` class depends on the `Switchable` interface, an abstraction. Both `LightBulb` and `Fan` implement this interface. Now, the `Switch` class can operate on any `Switchable` device without modification, adhering to the Dependency Inversion Principle.
 
