@@ -393,21 +393,120 @@ In the refactored example, the `Bird` class has an abstract `move` method that i
 
 <br>
 
-
-
 ## Interface Segregation Principle (ISP)
 
 ### Definition
 
-[Content for Definition]
+The Interface Segregation Principle states that ***"no client should be forced to depend on methods it does not use."*** Instead of having one large interface, it is better to have multiple smaller, specific interfaces. This principle ensures that classes only implement the functionality that is essential to them.
 
 ### Explanation
 
-[Content for Explanation]
+The Interface Segregation Principle is one of the five SOLID principles of object-oriented design. It helps in creating a system that is more understandable, maintainable, and flexible by promoting the use of fine-grained interfaces. When interfaces are well-segregated:
+- Clients only need to know about the methods that are relevant to them.
+- Implementations are easier to understand and modify.
+- Changes in one part of the system are less likely to impact other parts.
 
 ### Examples
 
-[Content for Examples]
+#### Example 1: Before Applying ISP
+
+```java
+// Worker.java
+
+public interface Worker {
+    void work();
+    void eat();
+}
+```
+
+```java
+// HumanWorker.java
+
+public class HumanWorker implements Worker {
+    @Override
+    public void work() {
+        // Human work implementation
+    }
+
+    @Override
+    public void eat() {
+        // Human eating implementation
+    }
+}
+```
+
+```java
+// RobotWorker.java
+
+public class RobotWorker implements Worker {
+    @Override
+    public void work() {
+        // Robot work implementation
+    }
+
+    @Override
+    public void eat() {
+        // Robots do not eat, so this method is not needed
+        throw new UnsupportedOperationException("Robots do not eat");
+    }
+}
+```
+
+In the above example, the `RobotWorker` class is forced to implement the `eat` method, which it does not need, violating the Interface Segregation Principle.
+
+#### Example 2: After Applying ISP
+
+```java
+// Workable.java
+
+public interface Workable {
+    void work();
+}
+```
+
+```java
+// Eatable.java
+
+public interface Eatable {
+    void eat();
+}
+```
+
+```java
+// HumanWorker.java
+
+public class HumanWorker implements Workable, Eatable {
+    @Override
+    public void work() {
+        // Human work implementation
+    }
+
+    @Override
+    public void eat() {
+        // Human eating implementation
+    }
+}
+```
+
+```java
+// RobotWorker.java
+
+public class RobotWorker implements Workable {
+    @Override
+    public void work() {
+        // Robot work implementation
+    }
+}` 
+```
+
+In the refactored example, the `Worker` interface is split into `Workable` and `Eatable` interfaces. The `HumanWorker` class implements both interfaces because it needs both methods, while the `RobotWorker` class only implements the `Workable` interface.
+
+### Benefits of ISP
+
+-   **Improved Code Readability:** Smaller interfaces are easier to understand.
+-   **Enhanced Maintainability:** Changes in one interface do not affect clients that do not depend on it.
+-   **Increased Flexibility:** Classes can implement multiple, specific interfaces based on their needs.
+
 
 ## Dependency Inversion Principle (DIP)
 
