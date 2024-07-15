@@ -451,6 +451,7 @@ public class RobotWorker implements Worker {
     }
 }
 ```
+![isp1](https://github.com/user-attachments/assets/be637494-00cc-413e-9b3e-eab7149a1014)
 
 In the above example, the `RobotWorker` class is forced to implement the `eat` method, which it does not need, violating the Interface Segregation Principle.
 
@@ -498,6 +499,7 @@ public class RobotWorker implements Workable {
     }
 }` 
 ```
+![isp2](https://github.com/user-attachments/assets/a5b7e09c-f40a-4c15-aa03-525a6aa9b039)
 
 In the refactored example, the `Worker` interface is split into `Workable` and `Eatable` interfaces. The `HumanWorker` class implements both interfaces because it needs both methods, while the `RobotWorker` class only implements the `Workable` interface.
 
