@@ -510,19 +510,126 @@ In the refactored example, the `Worker` interface is split into `Workable` and `
 -   **Increased Flexibility:** Classes can implement multiple, specific interfaces based on their needs.
 
 
+
 ## Dependency Inversion Principle (DIP)
 
 ### Definition
 
-[Content for Definition]
+The Dependency Inversion Principle states that high-level modules should not depend on low-level modules. Both should depend on abstractions (e.g., interfaces). Furthermore, abstractions should not depend on details. Details (concrete implementations) should depend on abstractions. This principle aims to decouple software modules, making them more maintainable and flexible.
 
 ### Explanation
 
-[Content for Explanation]
+The Dependency Inversion Principle is one of the five SOLID principles of object-oriented design. It encourages developers to rely on abstractions rather than concrete implementations, promoting loose coupling and enhancing code reusability. By following DIP, you ensure that:
+
+- High-level modules (business logic) are not tightly coupled to low-level modules (utility classes).
+- Changes in low-level modules do not impact high-level modules.
+- Code is easier to test because dependencies can be mocked or stubbed.
 
 ### Examples
 
-[Content for Examples]
+#### Example 1: Before Applying DIP
+
+```java
+// LightBulb.java
+
+public class LightBulb {
+    public void turnOn() {
+        System.out.println("LightBulb is on");
+    }
+
+    public void turnOff() {
+        System.out.println("LightBulb is off");
+    }
+}
+```
+```java
+// Switch.java
+
+public class Switch {
+    private LightBulb lightBulb;
+
+    public Switch(LightBulb lightBulb) {
+        this.lightBulb = lightBulb;
+    }
+
+    public void operate() {
+        // Simple toggle for example
+        lightBulb.turnOn();
+    }
+}
+```
+
+In the above example, the `Switch` class directly depends on the `LightBulb` class, which violates the Dependency Inversion Principle. If you need to switch to a different type of light source, you must modify the `Switch` class.
+
+#### Example 2: After Applying DIP
+
+```java
+// Switchable.java
+
+public interface Switchable {
+    void turnOn();
+    void turnOff();
+}
+```
+```java
+// LightBulb.java
+
+public class LightBulb implements Switchable {
+    @Override
+    public void turnOn() {
+        System.out.println("LightBulb is on");
+    }
+
+    @Override
+    public void turnOff() {
+        System.out.println("LightBulb is off");
+    }
+}
+```
+
+```java
+// Fan.java
+
+public class Fan implements Switchable {
+    @Override
+    public void turnOn() {
+        System.out.println("Fan is on");
+    }
+
+    @Override
+    public void turnOff() {
+        System.out.println("Fan is off");
+    }
+}
+```
+
+```java
+// Switch.java
+
+public class Switch {
+    private Switchable device;
+
+    public Switch(Switchable device) {
+        this.device = device;
+    }
+
+    public void operate() {
+        // Simple toggle for example
+        device.turnOn();
+    }
+}
+```
+
+In the refactored example, the `Switch` class depends on the `Switchable` interface, an abstraction. Both `LightBulb` and `Fan` implement this interface. Now, the `Switch` class can operate on any `Switchable` device without modification, adhering to the Dependency Inversion Principle.
+
+### Benefits of DIP
+
+-   **Reduced Coupling:** High-level modules are not tightly coupled to low-level modules.
+-   **Enhanced Flexibility:** It is easier to swap out low-level modules without affecting high-level modules.
+-   **Improved Testability:** Dependencies can be easily mocked or stubbed in unit tests.
+-   **Better Maintainability:** Changes in one module are less likely to impact others, reducing the risk of bugs.
+
+<br>
 
 ## Conclusion
 
